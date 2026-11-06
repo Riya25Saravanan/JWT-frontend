@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 
-const API = "http://localhost:7000";
+const API = import.meta.env.VITE_API_URL;
 
 function App() {
 
@@ -23,20 +23,12 @@ function App() {
         try {
 
             const response = await fetch(`${API}/register`, {
-
-                method: "POST",
-
-                headers: {
-                    "Content-Type": "application/json"
-                },
-
-                body: JSON.stringify({
-                    name,
-                    email,
-                    password
-                })
-
-            });
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({ name, email, password })
+});
 
             const data = await response.json();
 
@@ -54,7 +46,7 @@ function App() {
 
         } catch (error) {
 
-            setMessage("Backend connection failed:", error);
+            setMessage("Backend connection failed", error);
 
         }
 
@@ -105,7 +97,7 @@ function App() {
 
         } catch (error) {
 
-            setMessage("Backend connection failed:", error);
+            setMessage("Backend connection failed", error);
 
         }
 
@@ -142,7 +134,7 @@ function App() {
 
         } catch (error) {
 
-            setMessage("Unable to fetch profile:", error);
+            setMessage("Unable to fetch profile", error);
 
         }
 
